@@ -1,4 +1,4 @@
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from '../users/users.service';
 import { AuthController } from './auth.controller';
@@ -15,7 +15,7 @@ describe('AuthController', () => {
           secret: jwtConstants.secret,
         }),
       ],
-      providers: [AuthService, UsersService, JwtService],
+      providers: [AuthService, UsersService],
       controllers: [AuthController],
     }).compile();
 
