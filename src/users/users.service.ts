@@ -9,7 +9,6 @@ import { User, UserDocument } from './users.schema';
 import { hash } from 'bcryptjs';
 import { password_salt } from 'src/auth/constants';
 import { CreateEmailUserDto, UpdateUserDto, UserDto } from './dto/user-dto';
-import { use } from 'passport';
 
 @Injectable()
 export class UsersService {

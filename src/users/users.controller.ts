@@ -9,8 +9,10 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { ParseObjectIdPipe } from 'src/shared/objectid-piipe';
+import { Role } from '../auth/constants';
+import { Auth } from '../auth/decorator/roles.decorator';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ParseObjectIdPipe } from '../shared/objectid-piipe';
 import { CreateEmailUserDto, UpdateUserDto, UserDto } from './dto/user-dto';
 import { UsersService } from './users.service';
 
@@ -18,28 +20,28 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @Auth(Role.ADMIN)
   @Post()
   async create(@Body() req: CreateEmailUserDto) {
     const createdUser = await this.usersService.create(req);
     return createdUser;
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Auth(Role.ADMIN)
   @Put(':id')
   async update(@Param('id', ParseObjectIdPipe) id, @Body() req: UpdateUserDto) {
     const createdUser = await this.usersService.update(id, req);
     return createdUser;
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Auth(Role.ADMIN)
   @Get()
   async query(): Promise<UserDto[]> {
     const users = await this.usersService.query();
     return users;
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Auth(Role.ADMIN)
   @Delete(':id')
   async delete(@Param('id', ParseObjectIdPipe) id: string): Promise<UserDto> {
     const user = await this.usersService.delete(id);
