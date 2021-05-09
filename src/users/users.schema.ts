@@ -1,4 +1,5 @@
 import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
+import { IsEmail, IsNumber } from 'class-validator';
 import { Document } from 'mongoose';
 import { Role } from 'src/auth/constants';
 
@@ -7,16 +8,14 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Prop()
-  id: string;
+  @IsEmail()
+  email?: string;
 
   @Prop()
-  email: string;
+  gsm?: string;
 
   @Prop()
-  gsm: string;
-
-  @Prop()
-  password?: string;
+  password: string;
 
   @Prop()
   name: string;

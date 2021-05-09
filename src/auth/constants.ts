@@ -4,4 +4,8 @@ export const jwtConstants = {
 
 export const password_salt = '$2a$10$IZAykNrwfKHcpcoVcSQOsO';
 
-export type Role = 'ADMIN' | 'EMPLOYEE' | 'CUSTOMER';
+export enum Role {
+  ADMIN = 'ADMIN',
+  EMPLOYEE = 'EMPLOYEE',
+  CUSTOMER = 'CUSTOMER',
+}
