@@ -6,13 +6,10 @@ import {
   Param,
   Post,
   Put,
-  Req,
-  UseGuards,
 } from '@nestjs/common';
 import { Role } from '../auth/constants';
 import { Auth } from '../auth/decorator/roles.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { ParseObjectIdPipe } from '../shared/objectid-piipe';
+import { ParseObjectIdPipe } from '../shared/pipes/objectid-pipe';
 import { CreateEmailUserDto, UpdateUserDto, UserDto } from './dto/user-dto';
 import { UsersService } from './users.service';
 
